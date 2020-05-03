@@ -13,13 +13,6 @@ ComplexVariable &ComplexVariable::operator*(std::complex<double> cmplx_coe) {
     return *res;
 }
 
-ComplexVariable &ComplexVariable::operator*(double coe) {
-    std::complex<double> cmplx_coe = std::complex<double>(coe, 0);
-    ComplexVariable tmp(m_x2, m_x, m_c);
-    ComplexVariable *res = &(tmp * cmplx_coe);
-    return *res;
-}
-
 ComplexVariable &ComplexVariable::operator*(const ComplexVariable &other) {
     std::complex<double> zero = std::complex<double>(0, 0);
     // Handle the power > 2
@@ -40,22 +33,9 @@ ComplexVariable &solver::operator*(std::complex<double> cmplx_coe, const Complex
     return *res;
 }
 
-ComplexVariable &solver::operator*(double coe, const ComplexVariable &other) //friend
-{
-    std::complex<double> cmplx_coe = std::complex<double>(coe, 0);
-    ComplexVariable tmp(other.m_x2, other.m_x, other.m_c);
-    ComplexVariable *res = &(tmp * cmplx_coe);
-    return *res;
-}
-
 // Operator +:
 ComplexVariable &ComplexVariable::operator+(std::complex<double> cmplx_coe) {
     ComplexVariable *res = new ComplexVariable(m_x2, m_x, m_c + cmplx_coe);
-    return *res;
-}
-
-ComplexVariable &ComplexVariable::operator+(double coe) {
-    ComplexVariable *res = new ComplexVariable(m_x2, m_x, m_c + coe);
     return *res;
 }
 
@@ -70,20 +50,9 @@ ComplexVariable &solver::operator+(std::complex<double> cmplx_coe, const Complex
     return *res;
 }
 
-ComplexVariable &solver::operator+(double coe, const ComplexVariable &other) //friend
-{
-    ComplexVariable *res = new ComplexVariable(other.m_x2, other.m_x, other.m_c + coe);
-    return *res;
-}
-
 // Operator ==:
 ComplexVariable &ComplexVariable::operator==(std::complex<double> cmplx_coe) {
     ComplexVariable *res = new ComplexVariable(m_x2, m_x, m_c - cmplx_coe);
-    return *res;
-}
-
-ComplexVariable &ComplexVariable::operator==(double coe) {
-    ComplexVariable *res = new ComplexVariable(m_x2, m_x, m_c - coe);
     return *res;
 }
 
@@ -98,17 +67,7 @@ ComplexVariable &solver::operator==(std::complex<double> cmplx_coe, const Comple
     return *res;
 }
 
-ComplexVariable &solver::operator==(double coe, const ComplexVariable &other) //friend
-{
-    ComplexVariable *res = new ComplexVariable(other.m_x2, other.m_x, other.m_c - coe);
-    return *res;
-}
-
 // Operator -:
-ComplexVariable &ComplexVariable::operator-(double coe) {
-    ComplexVariable *res = new ComplexVariable(m_x2, m_x, m_c - coe);
-    return *res;
-}
 
 ComplexVariable &ComplexVariable::operator-(const ComplexVariable &other) {
     ComplexVariable *res = new ComplexVariable(m_x2 - other.m_x2, m_x - other.m_x, m_c - other.m_c);
@@ -126,21 +85,7 @@ ComplexVariable &solver::operator-(std::complex<double> cmplx_coe, const Complex
     return *res;
 }
 
-ComplexVariable &solver::operator-(double coe, const ComplexVariable &other) //friend
-{
-    ComplexVariable *res = new ComplexVariable(-other.m_x2, -other.m_x, coe - other.m_c);
-    return *res;
-}
-
 // Operator /:
-ComplexVariable &ComplexVariable::operator/(double coe) {
-    if (coe == 0) {
-        throw runtime_error("Cannot divide by 0!");
-    }
-
-    ComplexVariable *res = new ComplexVariable(m_x2 / coe, m_x / coe, m_c / coe);
-    return *res;
-}
 
 ComplexVariable &ComplexVariable::operator/(std::complex<double> cmplx_coe) {
     if (cmplx_coe == std::complex<double>(0, 0)) {
@@ -158,16 +103,6 @@ ComplexVariable &solver::operator/(std::complex<double> cmplx_coe, const Complex
         throw runtime_error("Cannot divide by 0!");
     }
     ComplexVariable *res = new ComplexVariable(cmplx_coe / other.m_x2, cmplx_coe / other.m_x, cmplx_coe / other.m_c);
-    return *res;
-}
-
-ComplexVariable &solver::operator/(double coe, const ComplexVariable &other) //friend
-{
-    std::complex<double> zero = std::complex<double>(0, 0);
-    if (other.m_x2 == zero || other.m_x == zero || other.m_c == zero) {
-        throw runtime_error("Cannot divide by 0!");
-    }
-    ComplexVariable *res = new ComplexVariable(coe / other.m_x2, coe / other.m_x, coe / other.m_c);
     return *res;
 }
 

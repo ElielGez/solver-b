@@ -40,33 +40,23 @@ public:
     ComplexVariable(std::complex<double> x2, std::complex<double> x, std::complex<double> c) : m_x2(x2), m_x(x), m_c(c){};
 
     ComplexVariable &operator*(std::complex<double> cmplx_coe);
-    ComplexVariable &operator*(double coe);
     ComplexVariable &operator*(const ComplexVariable &other);
     friend ComplexVariable &operator*(std::complex<double> cmplx_coe, const ComplexVariable &other);
-    friend ComplexVariable &operator*(double coe, const ComplexVariable &other);
 
-    ComplexVariable &operator+(double coe);
     ComplexVariable &operator+(const ComplexVariable &other);
     ComplexVariable &operator+(std::complex<double> cmplx_coe);
     friend ComplexVariable &operator+(std::complex<double> cmplx_coe, const ComplexVariable &other);
-    friend ComplexVariable &operator+(double coe, const ComplexVariable &other);
 
-    ComplexVariable &operator-(double coe);
     ComplexVariable &operator-(const ComplexVariable &other);
     ComplexVariable &operator-(std::complex<double> cmplx_coe);
     friend ComplexVariable &operator-(std::complex<double> cmplx_coe, const ComplexVariable &other);
-    friend ComplexVariable &operator-(double coe, const ComplexVariable &other);
 
-    ComplexVariable &operator/(double coe);
     ComplexVariable &operator/(std::complex<double> cmplx_coe);
     friend ComplexVariable &operator/(std::complex<double> cmplx_coe, const ComplexVariable &other);
-    friend ComplexVariable &operator/(double coe, const ComplexVariable &other);
 
-    ComplexVariable &operator==(double coe);
     ComplexVariable &operator==(const ComplexVariable &other);
     ComplexVariable &operator==(std::complex<double> cmplx_coe);
     friend ComplexVariable &operator==(std::complex<double> cmplx_coe, const ComplexVariable &other);
-    friend ComplexVariable &operator==(double coe, const ComplexVariable &other);
 
     ComplexVariable &operator^(int pow);
 };
